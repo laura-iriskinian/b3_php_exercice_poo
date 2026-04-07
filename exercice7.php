@@ -27,3 +27,39 @@ $person = new Person("Alice", "Martin");
 echo $person->getFirstName() . " " . $person->getLastName() . "<br>";
 
 
+class Student extends Person {
+    protected $studentNumber;
+    protected $school;
+    protected $class;
+
+    public function getStudentNumber(){ 
+        return $this->studentNumber; 
+        }
+
+    public function setStudentNumber($studentNumber){ 
+        $this->studentNumber = $studentNumber; 
+        }
+
+    public function getSchool(){ 
+        return $this->school; 
+        }
+        
+    public function setSchool($school){ 
+        $this->school = $school; 
+        }
+
+    public function getClass(){ 
+        return $this->class; 
+        }
+
+    public function setClass($class){ 
+        $this->class = $class; 
+        }
+
+    public function displayStudent() {
+        return "Name: " . $this->getFirstName() . " " . $this->getLastName() . "\n" .
+                "Student Number: " . $this->getStudentNumber() . "\n" .
+                "School: " . $this->getSchool() . "\n" .
+                "Class: " . $this->getClass() . "\n";
+    }
+}

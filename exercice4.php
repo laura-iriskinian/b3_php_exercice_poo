@@ -9,11 +9,33 @@
  * Note : Pour afficher le status, utilisez $this->status->value pour obtenir la valeur de l'enum.
 */
 
-// Enum des status possibles
 enum TaskStatus: string
 {
     case TODO = "à faire";
     case DONE = "terminée";
 }
 
+class Task {
+    protected $title;
+    protected $description;
+    protected TaskStatus $status;
 
+    public function __construct($title, $description) {
+        $this->title = $title;
+        $this->description = $description;
+        $this->status = TaskStatus::TODO; 
+    }
+
+    public function markAsDone() {
+        $this->status = TaskStatus::DONE; 
+    }
+
+    public function display() {
+        return "Title: " . $this->title . "\n" .
+                "Description: " . $this->description . "\n" .
+                "Status: " . $this->status->value . "\n"; 
+    }
+}
+
+$task = new Task("Buy groceries", "Milk, Bread, Eggs");
+echo $task->display();

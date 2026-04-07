@@ -29,3 +29,33 @@ addItem($cart, "Livre", 12.5);
 addItem($cart, "Stylo", 2.3);
 displayCart($cart);
 echo "Total : " . getTotal($cart) . " €\n";
+
+/* Refactorisation */
+
+class ShoppingCart {
+    protected array $cart = [];
+
+    public function addItem(string $name, float $price) {
+        $this->cart[] = ['name' => $name, 'price' => $price];
+    }
+
+    public function getTotal(): float {
+        $total = 0;
+        foreach ($this->cart as $item) {
+            $total += $item['price'];
+        }
+        return $total;
+    }
+
+    public function displayCart() {
+        foreach ($this->cart as $item) {
+            echo $item['name'] . " : " . $item['price'] . " €\n";
+        }
+    }
+}
+
+$shoppingCart = new ShoppingCart();
+$shoppingCart->addItem("Livre", 12.5);
+$shoppingCart->addItem("Stylo", 2.3);
+$shoppingCart->displayCart();
+echo "Total : " . $shoppingCart->getTotal() . " €\n";
